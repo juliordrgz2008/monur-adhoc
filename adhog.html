@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .adhogFondo{
+                background-image: url(fondo.png);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-size: cover;
+            }   
+            button{
+                opacity: 100;
+                position: absolute;
+            }
+            .transparent{
+                opacity: 100;
+            }
+            .smallWindow{
+                display: flex;
+                position: absolute;
+                align-items: center;
+                text-align: center;
+                
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                width: 500px;
+                height: 500px;
+
+                padding: 1%;
+                z-index: 20;
+
+                background-color: black;
+                
+                border-radius: 15px;
+            }
+            .clickBlocker{
+                display: flex;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 15;
+                width: 100%;
+                height: 100%;
+            }
+            .windowText{
+                color: white;
+                font-size: 120%;
+                font-family:'Courier New', Courier, monospace;
+                text-align: center;
+            }
+
+            @keyframes fromTheTop {
+                from{top: -50%;}
+                to{top: 50%;}
+                
+            }
+
+            .fromTheTop{
+                animation-duration: 2s;
+                animation-name: fromTheTop;
+            }
+
+            .confirmButton{
+                left: 50%;
+                top: 85%;
+                transform: translate(-50%, -50%);
+                background-color: rgb(8, 8, 8);
+                border-radius: 10px;
+                font-size: 150%;
+                font-family: 'Courier New', Courier, monospace;
+                border-width: 0px;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            @keyframes goUp {
+                from{top: 50%;}
+                to{top:-50%}
+            }
+
+            .goUp{
+                animation-duration: 2s;
+                animation-name: goUp;
+                top: -50%;
+            }
+        </style>
+    </head>
+    <body class="adhogFondo" style="background-color: black;";>
+            <div id="window" class="smallWindow fromTheTop">
+                <div class="windowText" style="width: 100%; display: block;">
+                    <img id="pfpHolder" src="fondo.png" width="200">
+                    <h3>Bienvenido señor</h3>    
+                    <h3 id="nameLabel" style="text-decoration: underline;"></h3>
+                    <button id="buttonOk"class="confirmButton">Entrar</button>
+                </div>
+            </div>
+            <div class="transparent clickBlocker" id="anticlick"></div>
+
+        <button class="transparent" id="pistanose" style="margin-left: 18%; margin-top: 22.8%; padding: 1%;"></button>
+        <button class="transparent" id="pista2" style="margin-left: 54%; margin-top: 32%; padding: 1%;"></button>
+        <button class="transparent" id="pista3" style="margin-left: 60%; margin-top: 7%; padding: 1%;"></button>
+        <script>
+            const username = localStorage.getItem('username');
+            const nameLabel = document.getElementById('nameLabel');
+            nameLabel.innerText = username;
+            const pfp = localStorage.getItem('pfp');
+            const pfpHolder = document.getElementById('pfpHolder');
+            pfpHolder.src=pfp;
+
+
+            const windowL = document.getElementById('window');
+            const button = document.getElementById('buttonOk');
+            const anticlick = document.getElementById('anticlick');
+            button.addEventListener('click', function(){
+                windowL.classList.toggle('goUp');
+                setTimeout(removeWindow, 2010);
+            });
+            function removeWindow(){
+                windowL.remove();
+                anticlick.remove();
+            }
+
+
+
+
+
+
+            const pista = document.getElementById('pistanose');
+            pista.addEventListener('click', function(){
+                window.open('pista2.html', '_blank');
+                window.open('pista1.html', '_blank');
+            });
+            const pista2 = document.getElementById('pista2');
+            pista2.addEventListener('click', function(){
+                window.open('pista4.html', '_blank');
+            });
+            const pista3 = document.getElementById('pista3');
+            pista3.addEventListener('click', function(){
+                window.open('pista3.html', '_blank');
+            });
+        </script>
+    </body>
+</html>
